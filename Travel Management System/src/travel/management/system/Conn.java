@@ -20,7 +20,7 @@ public class Conn {
             c = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/tms", // host + port + db
                     "root",
-                    "Ajeet@@2006"
+                    "Sp143200@"
             );
 
             s = c.createStatement();
