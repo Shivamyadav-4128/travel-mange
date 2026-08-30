@@ -1,46 +1,80 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package travel.management.system;
-
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.net.URI;
 
-public class Paytm extends JFrame{
-    Paytm(){
-        JEditorPane j = new JEditorPane();
-        j.setEditable(false);   
+public class Paytm extends JFrame {
 
-        try {
-            j.setPage("https://paytm.com/electricity-bill-payment");
-        }catch (Exception e) {
-            j.setContentType("text/html");
-            j.setText("<html>Could not load</html>");
-        } 
+    Paytm() {
 
-        JScrollPane scrollPane = new JScrollPane(j);     
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        getContentPane().add(scrollPane);
-        setPreferredSize(new Dimension(800,600));
-        
-        JButton back=new JButton("Back");
+        setTitle("Pay using Paytm");
+        setLayout(null);
+        setBounds(600, 220, 800, 600);
+
+        // Heading
+        JLabel heading = new JLabel("Pay using Paytm");
+        heading.setFont(new Font("Raleway", Font.BOLD, 40));
+        heading.setBounds(50, 30, 400, 50);
+        add(heading);
+
+        // Paytm image
+        ImageIcon i1 = new ImageIcon(
+            ClassLoader.getSystemResource(
+                "travel/management/system/icons/paytm.jpeg"
+            )
+        );
+
+        Image i2 = i1.getImage().getScaledInstance(
+            500, 350, Image.SCALE_SMOOTH
+        );
+
+        JLabel image = new JLabel(new ImageIcon(i2));
+        image.setBounds(120, 120, 500, 350);
+        add(image);
+
+        // Pay button
+        JButton pay = new JButton("Pay");
+        pay.setBounds(620, 30, 80, 40);
+
+        pay.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                try {
+                    Desktop.getDesktop().browse(
+                        new URI("https://paytm.com/")
+                    );
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(
+                        null,
+                        "Unable to open Paytm website."
+                    );
+                }
+            }
+        });
+
+        add(pay);
+
+        // Back button
+        JButton back = new JButton("Back");
+        back.setBounds(620, 80, 80, 40);
+
         back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
             }
         });
-        back.setBounds(610, 20, 80, 40);
-        j.add(back);
-        
-        setSize(800,600);
-        setLocation(600,220);
+
+        add(back);
+
+        getContentPane().setBackground(Color.WHITE);
+
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
     }
-    public static void main(String[] args){
-        new Paytm().setVisible(true);
+
+    public static void main(String[] args) {
+        new Paytm();
     }
 }

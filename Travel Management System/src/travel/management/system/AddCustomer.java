@@ -6,14 +6,10 @@
 package travel.management.system;
 
 
-import java.awt.BorderLayout;
 import java.awt.*;
-import java.awt.EventQueue;
 
 import javax.swing.border.EmptyBorder;
 
-import java.awt.Font;
-import java.awt.Image;
 import java.sql.*;	
 import javax.swing.*;
 import java.awt.event.ActionListener;
@@ -192,8 +188,9 @@ public class AddCustomer extends JFrame {
 	    			JOptionPane.showMessageDialog(null, "Customer Added Successfully");
                                 setVisible(false);
 	    		}catch(SQLException e1){
-	    			System.out.println(e1.getMessage());
-	    		}
+    e1.printStackTrace();
+    JOptionPane.showMessageDialog(null, e1.getMessage());
+}
 		    		catch(NumberFormatException s){
 		    			JOptionPane.showMessageDialog(null, "Please enter a valid Number");
 			}

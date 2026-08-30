@@ -20,7 +20,7 @@ public class Conn {
             c = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/tms", // host + port + db
                     "root",
-                    "Sp143200@"
+                    "your_mysql_password"
             );
 
             s = c.createStatement();
